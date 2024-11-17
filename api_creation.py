@@ -13,12 +13,12 @@ def store_data():
     return jsonify({"status": "success"}), 200
 
 
-# 2. **Server Side Request Forgery (SSRF)**
-# Endpunkt, der externe URLs abruft, ohne die Quelle zu validieren
+# 2. **Server Side Request Forgery**
+# Endpunkt für externe URLs, ohne die Quelle zu validieren
 @app.route('/fetch', methods=['GET'])
 def fetch_url():
     url = request.args.get('url')  # Akzeptiert beliebige URLs
-    response = requests.get(url)  # Kein Schutz gegen SSRF
+    response = requests.get(url)  # Kein Schutz gegen Server Side Request Forgery
     return response.text, response.status_code
 
 
